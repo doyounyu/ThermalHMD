@@ -63,7 +63,7 @@ Milessey TR256i
 2. connect the sleeve(the most far part from the tip) with the AV+, and second far part to the AV-.
 3. connect 5V+ and GND to the raspberry pi's 5V power supply.
 
-<img src="https://www.raspberrypi.com/documentation/computers/images/GPIO-Pinout-Diagram-2.png" style="zoom: 25%;" />
+<img src="https://www.raspberrypi.com/documentation/computers/images/GPIO-Pinout-Diagram-2.png" style="zoom: 10%;" />
 
 
 
