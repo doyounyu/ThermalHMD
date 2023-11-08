@@ -16,6 +16,7 @@ Raspberry pi 4B
 
 
 ### Display
+![image](https://github.com/doyounyu/ThermalHMD/assets/103356310/fec750ca-0163-45fe-b5d3-f3b2fcc3efa9)
 
  FLCOS Micro display module
 
