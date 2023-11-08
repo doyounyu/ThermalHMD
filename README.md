@@ -1,30 +1,89 @@
 # ThermalHMD
 Designing thermal HMD project
 
-from: https://wiki.banana-pi.org/OpenCV_3.4x_on_BananaPi
 
-## Prerequisite
 
-```
-apt-get update
-apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler
-apt-get install libgflags-dev libgoogle-glog-dev
-liblmdb-dev
-apt-get install build-essential cmake pkg-config libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev
-apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev v4l-utils libxvidcore-dev libx264-dev ffmpeg
-apt-get install libgtk2.0-dev libatlas-base-dev gfortran python2.7-dev python3-dev checkinstall
-```
 
-```
-git clone https://github.com/opencv/opencv.git --branch 3.4.0
-git clone https://github.com/opencv/opencv_contrib.git --branch 3.4.0
-```
 
-```
-cd <path>/opencv
-mkdir build
-cd build
-cmake -D CMAKE_BUILD_TYPE=Release  -D CMAKE_INSTALL_PREFIX=/usr/local -D PYTHON_INCLUDE_DIR=/usr/bin/python -D OPENCV_EXTRA_MODULES_PATH=<path>/opencv_contrib/modules ..
-```
+## Hardware
 
+
+
+### Single Board Computer
+
+Raspberry pi 4B
+
+
+
+### Display
+
+ FLCOS Micro display module
+
+https://ko.aliexpress.com/item/1005003368754176.html?spm=a2g0o.order_list.order_list_main.10.65921802Ic7Kpc&gatewayAdapt=glo2kor
+
+
+
+| Parameter    | Specification      |
+| ------------ | ------------------ |
+| pixel        | 960x540            |
+| aspect ratio | 16:9               |
+| video format | Composite(AV+ AV-) |
+| VIN          | 5V                 |
+
+
+
+
+
+#### Rest of the specifications
+
+
+
+#### Pinmap
+
+
+
+### Thermal Camera
+
+Milessey TR256i
+
+
+
+## Software
+
+- **2023-05-03-raspios-bullseye-armhf-full.img  !Important!**
+- opencv-python
+
+
+
+
+
+## 1. RPi - Display Connection: Hardware Setting
+
+1. Get a TRRS 3.5mm jack and strip the wire of it.
+2. connect the sleeve(the most far part from the tip) with the AV+, and second far part to the AV-.
+3. connect 5V+ and GND to the raspberry pi's 5V power supply.
+
+<img src="https://www.raspberrypi.com/documentation/computers/images/GPIO-Pinout-Diagram-2.png" style="zoom: 25%;" />
+
+
+
+## 2. RPi - Display Connection: BIOS Setting
+
+1. Go to `config.txt` file inside the boot folder either by connecting sd card with os image on to the pc, or by  directly modifying`config.txt` by `sudo nano /boot/config.txt`.
+
+2. add following parameters:
+
+   ```bash
+   enable_tvout=1 #enables composite output through 3.5mm audio jack
+   sdtv_mode=2    #enables "Normal PAL" for the composite output
+   sdtv_aspect=3  #defines aspect ratio of 16:9
+   ```
+
+   check the link below to see what other option can be made, but other `sdtv_mode`, such as 0 or 1 shows terrible video output.
+
+https://www.raspberrypi.com/documentation/computers/legacy_config_txt.html#sdtv_mode
+
+3. Save and reboot the RPi.
+
+   
 
