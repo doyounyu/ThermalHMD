@@ -40,6 +40,16 @@ https://ko.aliexpress.com/item/1005003368754176.html?spm=a2g0o.order_list.order_
 
 #### Pinmap
 
+| Color  | Purpose     |
+| ------ | ----------- |
+| Orange | AV+         |
+| White  | AV-         |
+| Blue   | Brightness+ |
+| Green  | Brightness- |
+| Yellow | Empty       |
+| Black  | GND         |
+| Red    | 3.6-5V      |
+
 
 
 ### Thermal Camera
@@ -62,6 +72,9 @@ Milessey TR256i
 1. Get a TRRS 3.5mm jack and strip the wire of it.
 2. connect the sleeve(the most far part from the tip) with the AV+, and second far part to the AV-.
 3. connect 5V+ and GND to the raspberry pi's 5V power supply.
+
+![image](https://github.com/doyounyu/ThermalHMD/assets/103356310/3a0b8037-585f-4820-aea4-866614bb43d9)
+RPi 3.5mm Composite output pinmap
 
 <img src="https://www.raspberrypi.com/documentation/computers/images/GPIO-Pinout-Diagram-2.png" style="zoom: 10%;" />
 
