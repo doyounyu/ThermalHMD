@@ -1,6 +1,9 @@
 # ThermalHMD
 Designing thermal HMD project
 
+1. [Example](#Hardware)
+2. [Example2](#example2)
+3. [Third Example](#third-example)
 
 
 
@@ -114,5 +117,51 @@ https://raspberrypi-guide.github.io/programming/install-opencv
 sudo apt-get update
 sudo apt-get install build-essential cmake pkg-config libjpeg-dev libtiff5-dev libjasper-dev libpng-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev libfontconfig1-dev libcairo2-dev libgdk-pixbuf2.0-dev libpango1.0-dev libgtk2.0-dev libgtk-3-dev libatlas-base-dev gfortran libhdf5-dev libhdf5-serial-dev libhdf5-103 python3-pyqt5 python3-dev -y
 pip install opencv-python==4.5.3.56
+pip install numpy==1.20.0
 
 ```
+
+## Troubleshooting
+https://stackoverflow.com/questions/33859531/runtimeerror-module-compiled-against-api-version-a-but-this-version-of-numpy-is
+
+### ImportError: numpy.core.multiarray failed to import
+
+```bash
+RuntimeError: module compiled against API version 0xe but this version of numpy is 0xd
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/doyounyu/.local/lib/python3.9/site-packages/cv2/__init__.py", line 5, in <module>
+    from .cv2 import *
+ImportError: numpy.core.multiarray failed to import
+
+```
+
+`pip install numpy --upgrade` might work, but sometimes version new numpy might incompatable with the opencv. to figure out, you need to focus on the `RuntimeError`:
+RuntimeError: module compiled against API version **0xe** but this version of numpy is **0xd**
+
+so you need **0xe** version of numpy. but what is **0xe** version?
+
+https://github.com/numpy/numpy/blob/maintenance/1.26.x/numpy/core/setup_common.py#L35-L51
+check for the table below:
+
+| Color| Purpose|
+|------|--------|
+| 0x8  | 1.7.x  |  
+| 0x9  | 1.8.x  |
+| 0x9  | 1.9.x  |
+| 0xa  | 1.10.x |
+| 0xa  | 1.11.x |
+| 0xa  | 1.12.x |
+| 0xb  | 1.13.x |
+| 0xc  | 1.14.x |
+| 0xc  | 1.15.x |
+| 0xd  | 1.16.x |
+| 0xd  | 1.19.x |
+| 0xe  | 1.20.x |
+| 0xe  | 1.21.x |
+| 0xf  | 1.22.x |
+| 0x10 | 1.23.x |
+| 0x10 | 1.24.x |
+| 0x11 | 1.25.x |
+
+thus you need to install 0xe version, which is either 1.20 or 1.21 by `pip install numpy==1.20`.
