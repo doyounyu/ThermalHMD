@@ -98,6 +98,13 @@ RPi 3.5mm Composite output pinmap
 https://www.raspberrypi.com/documentation/computers/legacy_config_txt.html#sdtv_mode
 
 3. Save and reboot the RPi.
-
+Note: You better connect your debug monitor first after you flash the OS, unless RPi will set the FLCOS as your default monitor setting.
    
+## 3. OpenCV installation
 
+python version: 3.9.2
+
+```bash
+doyounyu1@raspberrypi:~ $ pip install --upgrade pip
+doyounyu1@raspberrypi:~ $ pip install opencv-python==4.5.3.56
+```
