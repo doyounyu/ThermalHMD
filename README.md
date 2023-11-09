@@ -75,6 +75,8 @@ Milessey TR256i
 3. connect 5V+ and GND to the raspberry pi's 5V power supply.
 
 ![image](https://github.com/doyounyu/ThermalHMD/assets/103356310/3a0b8037-585f-4820-aea4-866614bb43d9)
+
+
 RPi 3.5mm Composite output pinmap
 
 <img src="https://www.raspberrypi.com/documentation/computers/images/GPIO-Pinout-Diagram-2.png" style="zoom: 10%;" />
