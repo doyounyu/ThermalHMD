@@ -1,11 +1,9 @@
 # ThermalHMD
+
+
 Designing thermal HMD project
 
-1. [Example](#Hardware)
-2. [Example2](#example2)
-3. [Third Example](#third-example)
-
-
+[TOC]
 
 
 ## Hardware
