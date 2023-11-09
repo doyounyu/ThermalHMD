@@ -121,8 +121,11 @@ pip install numpy==1.20.0
 
 ```
 
+
 ## Troubleshooting
+
 https://stackoverflow.com/questions/33859531/runtimeerror-module-compiled-against-api-version-a-but-this-version-of-numpy-is
+
 
 ### ImportError: numpy.core.multiarray failed to import
 
@@ -139,7 +142,9 @@ ImportError: numpy.core.multiarray failed to import
 `pip install numpy --upgrade` might work, but sometimes version new numpy might incompatable with the opencv. to figure out, you need to focus on the `RuntimeError`:
 RuntimeError: module compiled against API version **0xe** but this version of numpy is **0xd**
 
+
 so you need **0xe** version of numpy. but what is **0xe** version?
+
 
 https://github.com/numpy/numpy/blob/maintenance/1.26.x/numpy/core/setup_common.py#L35-L51
 check for the table below:
