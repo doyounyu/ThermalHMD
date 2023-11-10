@@ -147,7 +147,7 @@ so you need **0xe** version of numpy. but what is **0xe** version?
 https://github.com/numpy/numpy/blob/maintenance/1.26.x/numpy/core/setup_common.py#L35-L51
 check for the table below:
 
-| Color| Purpose|
+| Code | Version|
 |------|--------|
 | 0x8  | 1.7.x  |  
 | 0x9  | 1.8.x  |
