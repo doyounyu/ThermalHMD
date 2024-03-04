@@ -4,7 +4,8 @@ import math
 # Callback function to capture mouse movements
 w = 800
 h = 600
-off = 50 # offset ----___x
+off = 50 # artificial horizon offset ----___x
+w_crs = 30 # crosshair width
 
 l = w/2 - off + 100 # length of artificial horizon line
 lp = 100  # pitch line length
@@ -81,12 +82,14 @@ def draw_following_square(event, x, y, flags, param):
         roll  = (x - w/2)/(w/2)*np.pi
         pitch = (y - h/2)/(h/2)*np.pi
         
-        print(f"pitch: {pitch*57.2958} roll: {roll*57.2958}")
+        #print(f"pitch: {pitch*57.2958} roll: {roll*57.2958}")
         
         cos_roll = np.cos(roll)
         sin_roll = np.sin(roll)
         y_ofst = pc*pitch
 
+
+        #Artificial Horizon code
         
         p1 = (int(-off*cos_roll+w/2 -     y_ofst*sin_roll), int(y_ofst*cos_roll -off*sin_roll+h/2))
         p2 = (int(-(off+l)*cos_roll+w/2 - y_ofst*sin_roll), int(y_ofst*cos_roll-(off+l)*sin_roll+h/2))
@@ -96,6 +99,19 @@ def draw_following_square(event, x, y, flags, param):
 
         cv2.line(temp_img, p1, p2, (0,255,0), 1) #left artificial horizon
         cv2.line(temp_img, p3, p4, (0,255,0), 1) #right artificial horizon
+
+
+        #crosshair code
+
+        p5 = (int(-(y_ofst + w_crs/2)*sin_roll + w/2), int((y_ofst + w_crs/2)*cos_roll + h/2))
+        p6 = (int(-(y_ofst - w_crs/2)*sin_roll + w/2), int((y_ofst - w_crs/2)*cos_roll + h/2))
+
+        p7 = (int(w_crs/2*cos_roll+w/2 -      y_ofst*sin_roll), int(y_ofst*cos_roll+ w_crs/2*sin_roll+h/2))
+        p8 = (int(-w_crs/2*cos_roll+w/2 -      y_ofst*sin_roll), int(y_ofst*cos_roll- w_crs/2*sin_roll+h/2))
+
+        cv2.line(temp_img, p5, p6, (0,255,0), 1) #left artificial horizon
+        cv2.line(temp_img, p7, p8, (0,255,0), 1) #left artificial horizon
+
         #draw_number(temp_img, 3, p1, 5)
         for i in range(1,7):
             
@@ -113,7 +129,7 @@ def draw_following_square(event, x, y, flags, param):
             x3 = (int(off*cos_roll+w/2 -     (y_ofst+cent_ofst)*sin_roll), int((y_ofst+cent_ofst)*cos_roll+ off*sin_roll+h/2))
             x4 = (int((off+lp)*cos_roll+w/2 -  y_ofst*sin_roll), int(y_ofst*cos_roll+ (off+lp)*sin_roll+h/2))
             
-            print(f'x1: {x1}, x2: {x2}, x3: {x3}, x4: {x4}')
+            #print(f'x1: {x1}, x2: {x2}, x3: {x3}, x4: {x4}')
             #cv2.putText(temp_img, str(i*10), x2, cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1 ) # pitch degree
             cv2.putText(temp_img, str(i*10), (x4[0]-20, x4[1]), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1 ) # pitch degree
             
@@ -136,7 +152,7 @@ def draw_following_square(event, x, y, flags, param):
             x3 = (int(off*cos_roll+w/2 -     (y_ofst+cent_ofst)*sin_roll), int((y_ofst+cent_ofst)*cos_roll+ off*sin_roll+h/2))
             x4 = (int((off+lp)*cos_roll+w/2 -  y_ofst*sin_roll), int(y_ofst*cos_roll+ (off+lp)*sin_roll+h/2))
             
-            print(f'x1: {x1}, x2: {x2}, x3: {x3}, x4: {x4}')
+            #print(f'x1: {x1}, x2: {x2}, x3: {x3}, x4: {x4}')
             #cv2.putText(temp_img, str(i*10), x2, cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1 ) # pitch degree
             cv2.putText(temp_img, str(i*10), (x4[0]-20, x4[1]), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1 ) # pitch degree
             
@@ -147,7 +163,7 @@ def draw_following_square(event, x, y, flags, param):
         cv2.putText(temp_img, f"PITCH:  {round(pitch*57.2958)}DEG", (10, h - 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
         cv2.putText(temp_img, f"ROLL:   {round(roll*57.2958)}DEG", (10, h - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
 
-        print(f"p1: {p1} p2: {p2}")
+        #print(f"p1: {p1} p2: {p2}")
         ##cv2.putText(temp_img, "f'PITCH :+ {round(pitch)}' ")
         out.write(temp_img)
 
